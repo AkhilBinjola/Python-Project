@@ -1,24 +1,39 @@
-# Python Project – Electric Vehicle Data Analysis
+# Electric Vehicle Market Analysis and Recommendation
 
-By Akhil Binjola
+A Python data analysis of an electric vehicle (EV) specifications dataset. It combines exploratory analysis, outlier detection, correlation analysis and hypothesis testing, and ends with a function that recommends cars for a buyer's budget and range needs.
 
-Exploratory + inferential analysis of EV specs in Poland (price in PLN, WLTP range, battery, power).
+## Questions explored
 
-## Files
-- `PyhtonProject .ipynb` – all analysis (Tasks 1–5)
-- `FEV-data-Excel.xlsx` – source dataset (Make, Model, price, range, battery, energy consumption, engine power)
+1. Which EVs fit a budget of 350,000 PLN and offer 400+ km of range?
+2. Are there vehicles with unusual energy consumption?
+3. How strongly does battery capacity relate to driving range?
+4. Is there a significant difference in engine power between Tesla and Audi models?
 
-Video: https://drive.google.com/file/d/1aqT37j75az0mr4tbvoOunNLCtzyA1RN6/view?usp=sharing
+## Methods and findings
 
-## Tasks
-1. **Budget + range filter** – EVs ≤ 350,000 PLN and ≥ 400 km range; avg battery by Make. Finding: Tesla/VW/Kia/Hyundai best value vs Audi/Mercedes.
-2. **Outlier check** – IQR on `mean - Energy consumption [kWh/100 km]` (bounds ~4.59–33.94). Result: no outliers.
-3. **Battery vs Range** – scatterplot + Pearson r ≈ 0.81, strong positive; some 75–95 kWh models show diminishing returns.
-4. **Recommendation function** – `recommend_evs(df)`: input budget/min range/min battery, returns top-3 sorted by range then price.
-5. **Hypothesis test** – Welch t-test Tesla vs Audi `Engine power [KM]`, with boxplot.
+| Step | Method | Result |
+|---|---|---|
+| Shortlisting | Filtering on price and range | Cars under 350,000 PLN with a range of 400+ km |
+| Outliers | IQR method on energy consumption | Vehicles with unusually high or low consumption flagged |
+| Correlation | Pearson correlation | Strong positive correlation between battery capacity and range (r = 0.81) |
+| Hypothesis test | Welch's t-test, Tesla vs Audi engine power | p = 0.107, so no statistically significant difference at the 5% level |
+| Recommendation | Interactive function | Returns the top 3 EVs for a user's budget, range and battery needs |
 
-Tools: pandas, matplotlib, seaborn, scipy.stats
+## Tech stack
+
+Python, Pandas, SciPy, Matplotlib, Seaborn, Jupyter / Google Colab.
 
 ## How to run
-1. `pip install pandas matplotlib seaborn scipy openpyxl`
-2. Open notebook in Jupyter/Colab, upload `FEV-data-Excel.xlsx`, run all cells.
+
+```bash
+git clone https://github.com/AkhilBinjola/Python-Project
+cd Python-Project
+pip install -r requirements.txt
+jupyter notebook
+```
+
+The notebook reads the Excel dataset from `/content/` (Google Colab). To run locally, change the file path in the loading cell.
+
+## Author
+
+Akhil Binjola · [LinkedIn](https://linkedin.com/in/akhilbinjola) · [GitHub](https://github.com/AkhilBinjola)
